@@ -7,9 +7,16 @@ Exercises
 3. How would you detect when someone has won?
 4. How could you create a computer player?
 """
-
-from turtle import *
-
+from turtle import up
+from turtle import done
+from turtle import goto
+from turtle import circle
+from turtle import down
+from turtle import update
+from turtle import onscreenclick
+from turtle import tracer
+from turtle import hideturtle
+from turtle import setup
 from freegames import line
 
 
