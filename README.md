@@ -24,7 +24,15 @@ Carlos Hernández Arciniega A01709003
 //////////////////////////////////////////////////////////////////
 ```
 **Sebastian Jimenez Bauer     ||  Branch: TicTacToe**
-
+- Cloned repo on local folder
+- Created Branch "tictactoe"
+- Created File "tictactoe.py"
+- Created .gitignore
+- Commit to make "tictactoe.py" to follow pep8 standards
+- Commit to make "tictactoe.py" change the color and size of figures
+- Commit to make "tictactoe.py" so figures cannot repeat themselves
+- Commit to make "tictactoe.py" have better comments
+- Merged "tictactoe" branch with "main"
 ```
 //////////////////////////////////////////////////////////////////
 ```
