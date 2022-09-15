@@ -2,8 +2,11 @@
 
 ## <span style="color: rgb(26, 99, 169);">Integrantes</span>
 Sebastian Jimenez Bauer A01708830
+
 Ian Joab Padrón Corona A01708940
+
 Carlos Hernández Arciniega A01709003
+
 ```
 //////////////////////////////////////////////////////////////////
 ```
