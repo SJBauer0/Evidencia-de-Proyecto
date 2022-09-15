@@ -38,14 +38,15 @@ Carlos Hernández Arciniega A01709003
 ```
 **Carlos Hernández Arciniega  ||  Branch: Memoria**
 
-Cloned repo on local folder
-Created a branch 'memoria'
-Created a file 'memoria.py'
-Modified memoria.py to follow pep8 standards
-Commited & Pushed memoria.py to 'Memoria' branch
-Modified the draw function  to display a message when the memory is complete.
-Commit to make "memoria.py" have better comments
-Merged branches: 'Memoria' with 'main'
+- Cloned repo on local folder
+- Created a branch 'memoria'
+- Created a file 'memoria.py'
+- Modified memoria.py to follow pep8 standards
+- Commited & Pushed memoria.py to 'Memoria' branch
+- Modified the draw function  to display a message when the memory is complete.
+- Commit to make "memoria.py" have better comments
+- Merged branches: 'Memoria' with 'main'
+
 ```
 //////////////////////////////////////////////////////////////////
 ```
