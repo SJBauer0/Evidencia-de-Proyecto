@@ -3,9 +3,6 @@
 Exercises
 
 1. Give the X and O a different color and width.
-2. What happens when someone taps a taken spot?
-3. How would you detect when someone has won?
-4. How could you create a computer player?
 """
 from turtle import up
 from turtle import done
@@ -17,6 +14,8 @@ from turtle import onscreenclick
 from turtle import tracer
 from turtle import hideturtle
 from turtle import setup
+from turtle import color
+from turtle import width
 from freegames import line
 
 
@@ -30,12 +29,16 @@ def grid():
 
 def drawx(x, y):
     """Draw X player."""
+    color('green')
+    width(8)
     line(x, y, x + 133, y + 133)
     line(x, y + 133, x + 133, y)
 
 
 def drawo(x, y):
     """Draw O player."""
+    color('pink')
+    width(8)
     up()
     goto(x + 67, y + 5)
     down()
