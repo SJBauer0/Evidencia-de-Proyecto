@@ -1,6 +1,6 @@
-"""Pacman, classic arcade game.
-"""
+"""Pacman, classic arcade game."""
 
+# Imports necessary packages from different libraries
 from random import choice
 from turtle import Turtle
 from turtle import bgcolor
@@ -19,6 +19,7 @@ from turtle import done
 from freegames import floor
 from freegames import vector
 
+# Defines the initial state of the game (Score, Pacman & Ghosts position)
 state = {'score': 0}
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
@@ -30,13 +31,13 @@ ghosts = [
     [vector(100, 160), vector(0, -5)],
     [vector(100, -160), vector(-5, 0)],
 ]
-# fmt: off
+# This is the board. 0's represent walls and 1's represent movearound area.
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0,
     0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0,
-    0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
+    0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
     0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
@@ -53,11 +54,10 @@ tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ]
-# fmt: on
 
 
 def square(x, y):
-    """Draw square using path at (x, y)."""
+    # Draw square using path at (x, y).
     path.up()
     path.goto(x, y)
     path.down()
@@ -71,7 +71,7 @@ def square(x, y):
 
 
 def offset(point):
-    """Return offset of point in tiles."""
+    # Return offset of point in tiles.
     x = (floor(point.x, 20) + 200) / 20
     y = (180 - floor(point.y, 20)) / 20
     index = int(x + y * 20)
@@ -79,7 +79,7 @@ def offset(point):
 
 
 def valid(point):
-    """Return True if point is valid in tiles."""
+    # Return True if point is valid in tiles.
     index = offset(point)
 
     if tiles[index] == 0:
@@ -94,7 +94,7 @@ def valid(point):
 
 
 def world():
-    """Draw world using path."""
+    # Draws board using tiles matrix.
     bgcolor('black')
     path.color('blue')
 
@@ -113,17 +113,19 @@ def world():
 
 
 def move():
-    """Move pacman and all ghosts."""
+    # Move pacman and all ghosts.
     writer.undo()
     writer.write(state['score'])
 
     clear()
-
+    # Verifies pacman's location onboard & aim (where it's looking at)
     if valid(pacman + aim):
         pacman.move(aim)
 
     index = offset(pacman)
-
+    ''' Checks if pacman is standing on a tile with dot.
+        Adds +1 to score and removes dot of that tile.
+    '''
     if tiles[index] == 1:
         tiles[index] = 2
         state['score'] += 1
@@ -132,9 +134,17 @@ def move():
         square(x, y)
 
     up()
+    # Defines how many tiles pacman will move.
     goto(pacman.x + 10, pacman.y + 10)
+    # Defines pacman's size and color
     dot(20, 'yellow')
 
+    ''' This block of code determines the movement of the Ghosts.
+        If they are on a valid position and course, they'll move in that
+        direction.
+        Otherwise, the program will choose the new direction of the ghost, from
+        a default set of options and try again.
+    '''
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
@@ -148,13 +158,14 @@ def move():
             plan = choice(options)
             course.x = plan.x
             course.y = plan.y
-
+        # Defines ghost's size and color
         up()
         goto(point.x + 10, point.y + 10)
         dot(20, 'red')
 
     update()
-
+    '''Checks position of the ghosts relative to pacman.
+    If they collide, game ends'''
     for point, course in ghosts:
         if abs(pacman - point) < 20:
             return
@@ -163,12 +174,13 @@ def move():
 
 
 def change(x, y):
-    """Change pacman aim if valid."""
+    # Change pacman aim if valid.
     if valid(pacman + vector(x, y)):
         aim.x = x
         aim.y = y
 
 
+''' This block of code calls functions to start the game. '''
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
@@ -176,6 +188,7 @@ writer.goto(160, 160)
 writer.color('white')
 writer.write(state['score'])
 listen()
+# Define keys to use ingame to move pacman
 onkey(lambda: change(5, 0), 'Right')
 onkey(lambda: change(-5, 0), 'Left')
 onkey(lambda: change(0, 5), 'Up')
