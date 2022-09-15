@@ -1,9 +1,6 @@
-"""Tic Tac Toe
+"""Tic Tac Toe"""
 
-Exercises
-
-1. Give the X and O a different color and width.
-"""
+# imports de las librerias necesarias
 from turtle import up
 from turtle import done
 from turtle import goto
@@ -20,7 +17,7 @@ from freegames import line
 
 
 def grid():
-    """Draw tic-tac-toe grid."""
+    # funcion para crear el grid
     line(-67, 200, -67, -200)
     line(67, 200, 67, -200)
     line(-200, -67, 200, -67)
@@ -28,7 +25,7 @@ def grid():
 
 
 def drawx(x, y):
-    """Draw X player."""
+    # Funcion para dibujar X
     color('green')
     width(8)
     line(x, y, x + 133, y + 133)
@@ -36,7 +33,7 @@ def drawx(x, y):
 
 
 def drawo(x, y):
-    """Draw O player."""
+    # Funcion para dibujar O
     color('pink')
     width(8)
     up()
@@ -46,7 +43,7 @@ def drawo(x, y):
 
 
 def floor(value):
-    """Round value down to grid with square size 133."""
+    # Redondear el valor a 133
     return ((value + 200) // 133) * 133 - 200
 
 
@@ -57,10 +54,11 @@ coord = []
 
 
 def tap(x, y):
-    """Draw X or O in tapped square."""
+    # Dibujar X o O en un casilla
     x = floor(x)
     y = floor(y)
     z = (x, y)
+    # Checar si una casilla esta disponible
     if (z in coord):
         print("Elije otra casilla")
     else:
@@ -70,12 +68,6 @@ def tap(x, y):
         update()
         state['player'] = not player
         coord.append(z)
-
-
-def counter():
-    global count
-    count += 1
-    return count
 
 
 setup(420, 420, 370, 0)
