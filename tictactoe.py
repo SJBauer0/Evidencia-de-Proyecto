@@ -52,17 +52,30 @@ def floor(value):
 
 state = {'player': 0}
 players = [drawx, drawo]
+count = 0
+coord = []
 
 
 def tap(x, y):
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
-    player = state['player']
-    draw = players[player]
-    draw(x, y)
-    update()
-    state['player'] = not player
+    z = (x, y)
+    if (z in coord):
+        print("Elije otra casilla")
+    else:
+        player = state['player']
+        draw = players[player]
+        draw(x, y)
+        update()
+        state['player'] = not player
+        coord.append(z)
+
+
+def counter():
+    global count
+    count += 1
+    return count
 
 
 setup(420, 420, 370, 0)
