@@ -1,26 +1,23 @@
 """Memorama, el juego de rompecabezas de pares de números.
 
-Ejercicios:
-1. Cuenta e imprime el número de toques.
-2. Decrece el número de fichas a una cuadícula de 4x4.
-3. Detecta cuando todas las fichas sean reveladas.
-4. Centraliza fichas con números de un dígito.
-5. Usa letras en vez de números.
-
 """
 
+from calendar import c
 from random import shuffle
 from turtle import up, goto, down, color, begin_fill, forward, left
 from turtle import end_fill, clear, shape, stamp, write, update
 from turtle import ontimer, setup, addshape, hideturtle, tracer
 from turtle import onscreenclick, done
 from freegames import path
+from collections import Counter
 
 car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 
+global c
+c = 0
 
 def square(x, y):
     """Dibuja un cuadro blanco con margen negro en (x,y)."""
@@ -72,6 +69,8 @@ def draw():
 
     if hide == [False] * 64:
         print("Todos los mosaicos han sido revelados")
+        print(c)
+        break
 
     mark = state['mark']
 
@@ -92,5 +91,7 @@ addshape(car)
 hideturtle()
 tracer(False)
 onscreenclick(tap)
+c = Counter(onscreenclick(tap))
 draw()
 done()
+
